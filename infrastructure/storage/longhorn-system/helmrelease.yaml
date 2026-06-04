@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: longhorn
+      version: "1.8.2"
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+        namespace: flux-system
+  values:
+    persistence:
+      defaultClass: true
+      defaultClassReplicaCount: 1   # IMPORTANT for single-node k3s
+    defaultSettings:
+      defaultReplicaCount: 1
+      storageOverProvisioningPercentage: 200
+      storageMinimalAvailablePercentage: 10
+    ingress:
+      enabled: false
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack
