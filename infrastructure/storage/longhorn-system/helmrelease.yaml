@@ -18,6 +18,8 @@ spec:
       defaultClass: true
       defaultClassReplicaCount: 1   # IMPORTANT for single-node k3s
     defaultSettings:
+      backupTarget: "s3://longhorn-backups@eu-north-1/"
+      backupTargetCredentialSecret: "rustfs-backup-creds"
       defaultReplicaCount: 1
       storageOverProvisioningPercentage: 200
       storageMinimalAvailablePercentage: 10
