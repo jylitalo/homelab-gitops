@@ -5,3 +5,4 @@ resources:
 - ../../infrastructure/cert-manager
 - ../../infrastructure/networking
 - ../../infrastructure/storage/longhorn-system
+- ../../infrastructure/storage/rustfs
