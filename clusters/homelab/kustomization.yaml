@@ -4,3 +4,4 @@ resources:
 - flux-system
 - ../../infrastructure/cert-manager
 - ../../infrastructure/networking
+- ../../infrastructure/storage/longhorn-system
