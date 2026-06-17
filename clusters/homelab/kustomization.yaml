@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - flux-system
 - ../../infrastructure/cert-manager
+- ../../infrastructure/databases
 - ../../infrastructure/networking
 - ../../infrastructure/storage/longhorn-system
 - ../../infrastructure/storage/rustfs
