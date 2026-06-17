@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: forgejo
+  namespace: forgejo
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: forgejo
+      sourceRef:
+        kind: HelmRepository
+        name: forgejo
+        namespace: flux-system
+      interval: 1h
+  values:
+    image:
+      tag: "15.0.2"
+    service:
+      type: ClusterIP
+      # --- EXPOSE SSH NATIVELY ---
+      ssh:
+        enabled: true
+        type: NodePort
+        nodePort: 30222
+    ingress:
+      enabled: true
+      className: traefik
+      hosts:
+        - host: git.ylitalot.com
+          paths:
+            - path: /
+              pathType: Prefix
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      size: 20Gi
+    config:
+      database:
+        DB_TYPE: postgres
+      server:
+        DOMAIN: git.ylitalot.com
+        ROOT_URL: https://git.ylitalot.com/
+        # Matches internal container port mapping
+        SSH_PORT: 30222
+    postgresql:
+      enabled: false 
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    gitea:
+      config:
+        server:
+          DOMAIN: git.ylitalot.com
+          ROOT_URL: https://git.ylitalot.com/
+          # Updates UI copy/paste URL references
+          SSH_PORT: 30222
+        database:
+          DB_TYPE: postgres
+          HOST: postgres-forgejo-rw.databases.svc.cluster.local:5432
+          NAME: forgejo
+          USER: forgejo
+
+      additionalConfigFromEnvs:
+        - name: FORGEJO__database__PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: forgejo-db-secret
+              key: password
