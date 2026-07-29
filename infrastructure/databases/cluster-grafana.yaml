@@ -1,0 +1,43 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-grafana
+  namespace: databases
+spec:
+  instances: 1
+
+  storage:
+    storageClass: longhorn
+    size: 2Gi
+
+  backup:
+    retentionPolicy: "7d"
+    barmanObjectStore:
+      destinationPath: s3://cnpg-grafana-backups/
+      endpointURL: http://rustfs.rustfs.svc.cluster.local:9000
+      s3Credentials:
+        accessKeyId:
+          name: rustfs-backup-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: rustfs-backup-creds
+          key: ACCESS_SECRET_KEY
+
+      wal:
+        compression: gzip
+
+      data:
+        compression: gzip
+        immediateCheckpoint: false
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: postgres-grafana-backup
+  namespace: databases
+spec:
+  schedule: "0 0 2 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: postgres-grafana
+

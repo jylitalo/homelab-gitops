@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "85.1.1"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  values:
+    grafana:
+      enabled: true
+
+      # The exact object array format required by the Grafana sub-chart template
+      envFromSecret: grafana-env
+
+      # Configure Grafana to use PostgreSQL natively
+      grafana.ini:
+        database:
+          type: postgres
+          host: postgres-grafana-rw.databases.svc.cluster.local:5432
+          name: grafana
+          user: grafana
+          ssl_mode: require
+
+    prometheus:
+      prometheusSpec:
+        serviceMonitorNamespaceSelector: []
+        serviceMonitorSelector: {}
+        retention: 14d
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              resources:
+                requests:
+                  storage: 32Gi
