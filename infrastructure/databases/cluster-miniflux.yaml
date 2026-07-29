@@ -1,0 +1,55 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: miniflux-db
+  namespace: databases
+spec:
+  instances: 1
+
+  storage:
+    storageClass: longhorn
+    size: 10Gi
+
+  bootstrap:
+    initdb:
+      database: miniflux
+      owner: miniflux
+
+  postgresql:
+    parameters:
+      shared_buffers: "256MB"
+      max_connections: "100"
+
+  monitoring:
+    enablePodMonitor: true
+
+  backup:
+    retentionPolicy: "7d"
+    barmanObjectStore:
+      destinationPath: s3://cnpg-miniflux-backups/
+      endpointURL: http://rustfs.rustfs.svc.cluster.local:9000
+      s3Credentials:
+        accessKeyId:
+          name: rustfs-backup-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: rustfs-backup-creds
+          key: ACCESS_SECRET_KEY
+
+      wal:
+        compression: gzip
+
+      data:
+        compression: gzip
+        immediateCheckpoint: false
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: postgres-miniflux-backup
+  namespace: databases
+spec:
+  schedule: "0 0 2 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: postgres-miniflux

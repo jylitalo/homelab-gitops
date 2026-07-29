@@ -4,6 +4,7 @@ resources:
 - flux-system
 - ../../apps/forgejo
 - ../../apps/immich
+- ../../apps/miniflux
 - ../../infrastructure/cert-manager
 - ../../infrastructure/databases
 - ../../infrastructure/monitoring

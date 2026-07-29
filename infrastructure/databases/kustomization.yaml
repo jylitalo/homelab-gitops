@@ -7,3 +7,4 @@ resources:
   - cluster-forgejo.yaml
   - cluster-grafana.yaml
   - cluster-immich.yaml
+  - cluster-miniflux.yaml
