@@ -1,0 +1,100 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: immich
+      version: "0.13.1"
+      sourceRef:
+        kind: HelmRepository
+        name: immich
+        namespace: flux-system
+  values:
+    # Global image block
+    image:
+      repository: ghcr.io/immich-app/immich-server
+      tag: v3.0.3
+
+    immich:
+      persistence:
+        library:
+          existingClaim: immich-library
+
+    server:
+      controllers:
+        main:
+          strategy: Recreate
+          pod:
+            securityContext:
+              fsGroup: 1000
+          containers:
+            main:
+              image:
+                repository: ghcr.io/immich-app/immich-server
+                tag: v3.0.3
+              securityContext:
+                runAsUser: 1000
+                runAsGroup: 1000
+              env:
+                DISABLE_FOLDER_CHECKS: "true"
+                DB_HOSTNAME: "postgres-immich-rw.databases.svc.cluster.local"
+                DB_USERNAME: "immich"
+                DB_DATABASE_NAME: "immich"
+                DB_PASSWORD:
+                  valueFrom:
+                    secretKeyRef:
+                      name: immich-postgres-app
+                      key: password
+                REDIS_URL: "redis://immich-valkey:6379"
+                IMMICH_MACHINE_LEARNING_URL: "http://immich-machine-learning:3003"
+      persistence:
+        data:
+          type: persistentVolumeClaim
+          existingClaim: immich-library
+          globalMounts:
+            - path: /usr/src/app/upload
+        external:
+          type: persistentVolumeClaim
+          existingClaim: immich-import-library
+          globalMounts:
+            - path: /mnt/import
+              readOnly: true
+
+    machine-learning:
+      controllers:
+        main:
+          pod:
+            securityContext:
+              fsGroup: 1000
+          containers:
+            main:
+              image:
+                repository: ghcr.io/immich-app/immich-machine-learning
+                tag: v3.0.3
+              securityContext:
+                runAsUser: 1000
+                runAsGroup: 1000
+      persistence:
+        cache:
+          enabled: true
+          type: persistentVolumeClaim
+          storageClass: longhorn
+          accessMode: ReadWriteOnce
+          size: 20Gi
+      resources:
+        requests:
+          cpu: 500m
+          memory: 1Gi
+        limits:
+          cpu: 4
+          memory: 8Gi

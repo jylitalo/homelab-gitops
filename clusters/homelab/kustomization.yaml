@@ -3,8 +3,10 @@ kind: Kustomization
 resources:
 - flux-system
 - ../../apps/forgejo
+- ../../apps/immich
 - ../../infrastructure/cert-manager
 - ../../infrastructure/databases
+- ../../infrastructure/monitoring
 - ../../infrastructure/networking
 - ../../infrastructure/storage/longhorn-system
 - ../../infrastructure/storage/rustfs

@@ -6,3 +6,4 @@ resources:
   - cnpg
   - cluster-forgejo.yaml
   - cluster-grafana.yaml
+  - cluster-immich.yaml
