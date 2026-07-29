@@ -7,6 +7,7 @@ resources:
 - ../../apps/miniflux
 - ../../infrastructure/cert-manager
 - ../../infrastructure/databases
+- ../../infrastructure/metallb
 - ../../infrastructure/monitoring
 - ../../infrastructure/networking
 - ../../infrastructure/storage/longhorn-system
