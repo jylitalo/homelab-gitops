@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: searxng-config
+  namespace: searxng
+data:
+  settings.yml: |
+    use_default_settings: true
+    general:
+      debug: false
+      instance_name: "SearXNG K3s"
+      donation_url: false
+      contact_url: false
+    search:
+      safe_search: 0
+      autocomplete: "duckduckgo"
+    server:
+      # Port inside container
+      port: 8080
+      bind_address: "0.0.0.0"
+      secret_key: "@ULTRA_SECRET_KEY@" # Auto-replaced by container using ENV
+      limiter: true # Enable Redis limiter
+    redis:
+      url: redis://searxng-redis:6379/0
