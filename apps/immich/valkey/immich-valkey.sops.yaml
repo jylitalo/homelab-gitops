@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+    password: ENC[AES256_GCM,data:B9+IUa1J4Ny1G3DCBmXPEgDaiMzGzJrNyWsY+g==,iv:FGpZbfSzwVjeNKnALhh9pO+O5DktH7WMpAGHgwGjiEA=,tag:W5KdLomRfWri65qftg1gpQ==,type:str]
+kind: Secret
+metadata:
+    name: immich-valkey
+    namespace: immich
+type: Opaque
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlZkh6cUNMN2dEajBmR084
+            eDZCbkQ3VnlxdC9DbnFIMnN6MGdodnRmUlZvCmZaWURPN0pKaXlDQVVBYjg2N0FJ
+            NWpHZS93a1BLN2p1VWdvRW4xQU5vQnMKLS0tIDZDYklJRWs0cU9Kd2JRWTdnRFFw
+            VXNUY0pTSDVJYmNPc0htUjNKUGo3OTgKMNExO6pSqcmwibWj7SAgzISUITZVyAOn
+            tCt4f56t91RYxRvqz9cJi9GLCKSk6IMmvUqsSJaZ0jmOnkmxymPb/w==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1pxvraeg872xkfn6w42vnatfzx3845nq7wqftxskshkrfjclzxfus8u7yhd
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-09-21T18:37:27Z"
+    mac: ENC[AES256_GCM,data:keRHdtetIFVl9PBjFIh5XMWJKV6GUu4LwkPDGdn8fbYLrRuwksqmJrg634UmxjH5cvlW1QkspIN8cL8j24KPOvSKeRGiOV0hBsvMfKnDyL2hOI9Hh5CA55RMD/gsjUg2bmlZVKK9ovttTbmCkeiGaaNaLoWUXUh3hhlmq1fLB88=,iv:XlGNgYVVwndabWr+93/NpFI0LUZQvhyyaD4ur0Vi2DQ=,tag:Qa8Jt1zXyuKHftCcI9BiiA==,type:str]
+    version: 3.13.3

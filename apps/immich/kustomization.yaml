@@ -3,8 +3,10 @@ kind: Kustomization
 resources:
   - helmrepository.yaml
   - helmrelease.yaml
+  - immich-postgres-app.sops.yaml
   - valkey/helmrepository.yaml
   - valkey/helmrelease.yaml
+  - valkey/immich-valkey.sops.yaml
   - pv.yaml
   - pvc.yaml
   - ingress.yaml

@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+    password: ENC[AES256_GCM,data:vpWNS+yyIHJWP2MCDdr10uCMMGqoTkCbTvllGIPSUyt1Fx0GH24oiaPzfxipQ+f4vuRbpgzv7rjI3ao/uXZYS4PTgditZND95/3A+5z+fDW1eebZDUN3rA==,iv:E8auyAzNgQG2Nj/0Sz8oowhKxBOQxHwAIWlGWmOefJ0=,tag:wPLqbOUwF3+D34yJyo6UgA==,type:str]
+    username: ENC[AES256_GCM,data:48gRwjpEO8A=,iv:lbOv4iCzKCsZH+hzDac8sBk4k9gs+WE9F0MQVIgmeGk=,tag:c9xokIlHkIpyPG7ewZvwyA==,type:str]
+kind: Secret
+metadata:
+    name: immich-postgres-app
+    namespace: immich
+type: kubernetes.io/basic-auth
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmSFZVVXk4QTFYY3pyclB1
+            STZSdlVPNnJGOXFtemhWaythazNwdEw2RkZjCmhOdkFjRzNER0RDR1JORzJ1bnRF
+            VEVvVHVVMjNXdXFhOVlCZmwwN214WFEKLS0tIGo2R28yamxZM2xDTnR4SjFISFFL
+            L2dsOWlpcW9rZEpWTmw5M1ZKczVzMjQKzvKU0Szm7WQZsvEkMz45aJchYVxnHuDb
+            HmAsqFcvnHnASBV6st/KcOUnzAmM97MK/MveALuxlOvB4GYQ5yM0XA==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1pxvraeg872xkfn6w42vnatfzx3845nq7wqftxskshkrfjclzxfus8u7yhd
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-09-21T18:35:56Z"
+    mac: ENC[AES256_GCM,data:iDEQMUvJll+M0HDXf15tglmRDAeszHVkslHTF3TEhmxdDjq2ynhshrz6mbtdb4CHSVyRO71nJBVpUyjrKFKgAulLzdzU/wVBhH089vug+Cd0gOVjef6wUfzWZxjN8XwwzoJVHfrHK7x6vCfuky2k3PAyPnJdhqVz5xxHrU7gbKM=,iv:socjONgYA0hwiVWcF+OUQv2XNyP9ApuJjDYCeRnI9s0=,tag:tQ7mL1MihBvCF2koGJa8qw==,type:str]
+    version: 3.13.3
