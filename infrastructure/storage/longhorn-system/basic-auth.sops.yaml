@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+    longhorn-auth: ENC[AES256_GCM,data:xPwivHl41U3/N+QsjAIiOdwFZoMBD1fn1Oe3ZUCAlrSY439q9SuoViU1X2GEbPnpd+NrXsmdMqOk/oeT,iv:ZvcnAPEYpGXYrqGH5QU5p3Oy5koayiO7Zc2/+B1JH4w=,tag:TmtxpjWSjXU957lUkODBRg==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: "2026-05-24T15:27:34Z"
+    name: basic-auth
+    namespace: longhorn-system
+    resourceVersion: "2603122"
+    uid: 36f94f2a-26de-470d-b025-65a278254e81
+type: Opaque
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiTGUyallQODFTWDVhMXZx
+            S29qRkcvcGNSTytjRG5NWDZyczF0UUpJRkI0CllqQmEybFU5WmtCT3B6Z1hVQXFz
+            VDlGdG9TY0tOcVhuS0lIOENDZEJCSTgKLS0tIFRwTDc3RURTWnVNZjFvVXE1WExy
+            YlpCR0hLNlVHUGNRZU9YS1gzS0psWWcKzW+HpOTmmaKB7g40rBt7ZVk2+HjSsnDO
+            O/4aP0u6JYtVr60+bZymMxAn34sd/Vz3VpMypzfEKquuEwgnFJO9Xg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1pxvraeg872xkfn6w42vnatfzx3845nq7wqftxskshkrfjclzxfus8u7yhd
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-09-20T16:52:56Z"
+    mac: ENC[AES256_GCM,data:oFuRR24tupKsHo8vdtHHeFnXpQK6Hy9ZxRMtuz91xu/8/NJzciSu/wb1DxcoBOj7+EznQD9ENEsZEsnSxy2xwNpeXqJp8qoTSjhIBxGOq3ZClvG1yCqrEyTpNU4rV9VsJOs7ZqSiHX9iisAuPHSKAC3M5xBQJ2adi7/J45LoWac=,iv:Of0W38wAdwohVydzV4sza9xj5vltigUgbMBGXmZ5ZGo=,tag:b7GeUhDdkYFrJ1WApZOZog==,type:str]
+    version: 3.13.3

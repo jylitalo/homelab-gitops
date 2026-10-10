@@ -21,6 +21,9 @@ spec:
       backupTarget: "s3://longhorn-backups@eu-north-1/"
       backupTargetCredentialSecret: "rustfs-backup-creds"
       defaultReplicaCount: 1
+      engineReplicaTimeout:
+        v1: "16"
+        v2: "16"
       orphanAutoDeletion: true
       snapshotDataIntegrity: fast-check
       storageOverProvisioningPercentage: 200

@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+    AWS_ACCESS_KEY_ID: ENC[AES256_GCM,data:UjXSu9H7RxEMyXJjqPCbKtyHzPe1q1Dzhbrq9Q==,iv:K8tZJHktNRPS3uQFJ7V05FKqZD+K2dEZuODUGbaMrA0=,tag:4J8mcPF0vgXNXKBv7yFdrQ==,type:str]
+    AWS_ENDPOINTS: ENC[AES256_GCM,data:a+1xxNIs8KkA337vDWpUfh4YmBI22FZgL0CjyReHh0W9VYAhDynNMRwsU60wl6pwrWcHQ9nuqhu9RfWi,iv:pA9ysPNeiZiwr0aW9LSEqg/+gAT9J+txonDbpcWA2RE=,tag:XGDzwA1WyY66YuOjEZAkSA==,type:str]
+    AWS_REGION: ENC[AES256_GCM,data:TH6k6u1nHKrvatC+3zW7Ew==,iv:alTUFr8QANuzA0ReQkeEmzebdsBhG9mjzEcbGveb2xU=,tag:IOLGFbMQ2a7FEBI2pthuUw==,type:str]
+    AWS_SECRET_ACCESS_KEY: ENC[AES256_GCM,data:ObsBWkkmqV6kxkwSNLwmm2+pMbat8SsmT6/fjAOAO7ymLks/cpOL1lfWWF1gifbVCafG3g1Myl0=,iv:voWIhkf0o14IXZBIrd2wNZul19fpmszWb2ajFRkscQ4=,tag:NafA5H+pW18AXH068UsPZA==,type:str]
+kind: Secret
+metadata:
+    annotations:
+        longhorn.io/backup-target: s3://longhorn-backups@eu-north-1/
+    creationTimestamp: "2026-05-24T16:39:38Z"
+    name: rustfs-backup-creds
+    namespace: longhorn-system
+    resourceVersion: "2616382"
+    uid: 72cbc2cf-9835-496d-8b2d-e27af41eb555
+type: Opaque
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNRXM1MHZxR0RvdEZLOFhi
+            RTJRT2JKMXRzRGRYN2RHcVUvTGxUTDlKZXk4CmN1cS9vZFVtL0wwbUpiZ1IvRGRI
+            M1hleGtkdWRmYkpHY3kxN2tOd2lScWcKLS0tIHJ4bUM5ZWJuTjlnMEJMaXZZV0FG
+            S0QvRHpXbnRIdnZoL2tJbjVtdFNMa1kKw0EGtHW2diFvFwsiIHMP0dSFB7+l2YbM
+            7lj1Pl5/uu+9vNlcK7uPehopVHg6qEyTkQTcZb+dFLuLQpq1C5EXIQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1pxvraeg872xkfn6w42vnatfzx3845nq7wqftxskshkrfjclzxfus8u7yhd
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-09-20T16:55:01Z"
+    mac: ENC[AES256_GCM,data:zT3lAISeodToTVFn3e+rVdcwYJuiImDeKtB7cNMXdZjtW2QG7neAcEhsA1MggC7wt15Nw40/InbtjlBEWIynypZ2xmJH4iq9EV73B40IOvetTccf73IRgd08CNmM8lG4NSHNDJGc6xKOcgPORc20ujnFaNE6+Rv8NjcPB4yh3Vs=,iv:B5FihkLTuwnMQrURiYCl/hbZqPxOKBdSJNy8JbgLoEM=,tag:0vYl896czOF/I4Gdsz0Byg==,type:str]
+    version: 3.13.3
